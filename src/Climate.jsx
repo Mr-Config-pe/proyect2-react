@@ -1,8 +1,11 @@
 import axios from "axios";
 import { useState } from "react";
 import { useEffect } from "react";
+import background from "./assets/img/background-avif1.avif"
 
 const Climate = () => {
+
+    // ----- Code By Immer ----- Mr.Config -----
 
     //Estado para modificar API
 
@@ -28,6 +31,11 @@ const Climate = () => {
 
     }, [])
 
+    //Fahrenheit to Celsius
+
+    let celsius = Math.ceil(weather.main?.temp - 273.15)
+    let fahrenheit = Math.ceil(((weather.main?.temp - 273.15) * 1.8) + 32)
+
     //Flag 
 
     const flagIcon = `https://countryflagsapi.com/svg/${weather.sys?.country}`
@@ -36,10 +44,6 @@ const Climate = () => {
 
     const iconClimate = `http://openweathermap.org/img/wn/${weather.weather?.[0].icon}@2x.png`;
 
-    //Fahrenheit to Celsius
-
-    const celsius = Math.ceil(weather.main?.temp - 273.15)
-    const fahrenheit = Math.ceil(((weather.main?.temp - 273.15) * 1.8) + 32)
 
     //Funcion para el Boton
 
@@ -47,7 +51,9 @@ const Climate = () => {
         setIsKelvin(!isKelvin)
     }
 
-    // console.log(weather);
+    //Fondo Body
+
+    document.body.style.backgroundImage = `url(${background})`
 
     return (
         <div>
@@ -58,7 +64,7 @@ const Climate = () => {
                     <p className="p-cc2"><a>City : </a>{weather.name}</p>
                 </div>
                 <div className="celsius-fahrenheit">
-                    <a className="num-temp">{isKelvin ? celsius : fahrenheit}</a>
+                    <p className="num-temp">{isKelvin ? celsius : fahrenheit}</p>
                     <p className="symbol-temp">{isKelvin ? "°C" : "°F"}</p>
                 </div>
                 <div className="icon-climate">
@@ -68,6 +74,7 @@ const Climate = () => {
                     <button className="btn-changetemp" onClick={changeTemp}>{isKelvin ? "Change to Fahrenheit" : "Change to Celsius"}</button>
                 </div>
             </div>
+            {/* <img src={background1}></img> prueba fondo, si funciona*/}
         </div>
     );
 };
