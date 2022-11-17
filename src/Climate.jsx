@@ -53,7 +53,7 @@ const Climate = () => {
 
     //Fondo Body
 
-    document.body.style.backgroundImage = `url(${background})`
+    // document.body.style.backgroundImage = `url(${background})`
 
     return (
         <div>
